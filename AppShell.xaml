@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="GameLastOne.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:GameLastOne"
+    Shell.FlyoutBehavior="Disabled"
+     Shell.NavBarHasShadow="False"
+     Shell.BackgroundColor="Black"
+     Shell.ForegroundColor="White"
+    Shell.NavBarIsVisible="False"
+    Title=" Space Gaming App">
+
+    <TabBar
+       
+        Shell.TabBarBackgroundColor ="#0B1E3F"
+        Shell.TabBarTitleColor="White"
+        Shell.TabBarUnselectedColor="Pink">
+
+        
+        <ShellContent
+        Title="Main Page" 
+        Icon="mainpageicon.png"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+        
+        
+        
+        <ShellContent
+        Title="TicTacToe Game"
+        Icon="xicon.png"
+        ContentTemplate="{DataTemplate local:XoGame}"
+        Route="XoGame" />
+
+        
+        
+
+        <ShellContent
+        Title="Asteroid Dodge"
+        Icon="blueplanet.png"
+        ContentTemplate="{DataTemplate local:AsteroidGame}"
+        Route="AsteroidGame" />
+
+        <ShellContent
+        Title="Memory Match"
+        Icon="planet.png"
+        ContentTemplate="{DataTemplate local:MemoryGame}"
+        Route="MemoryGame" />
+
+    </TabBar>
+
+
+</Shell>

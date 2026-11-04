@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GameLastOne.MainPage"
+             BackgroundImageSource="space.png">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="30" Padding="20">
+
+            <!--  Title section -->
+            <Label Text=" 🚀 Cosmic Quest: Multiverse Challenge 🚀 "
+                       FontSize="40"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       VerticalOptions="Center"
+                       Margin="10,5"
+                       TextColor="#00FFFF"
+                       Grid.Column="1" />
+
+
+            <!--  Subtitle section -->
+            <Label Text="  🪐 Select a planet to begin your adventure  🪐 "
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="Pink"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,10,0,20"/>
+
+            <!--  Orbit section -->
+            <AbsoluteLayout x:Name="_orbitLayout"
+                            WidthRequest="400"
+                            HeightRequest="400"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center">
+
+                <!-- Orbit Ring -->
+                <Image x:Name="_orbitRing"
+                       Source="ring2.png"
+                       AbsoluteLayout.LayoutBounds="0.5,0.5,500,500"
+                       AbsoluteLayout.LayoutFlags="PositionProportional"
+                       Opacity="0.6" />
+
+                <!--  Center Planet -->
+                <Image x:Name="_centerPlanet"
+                       Source="planet.png"
+                       AbsoluteLayout.LayoutBounds="0.5,0.5,100,100"
+                       AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+                <!--  Inner Planets -->
+                <!-- Green planet-->
+                <ImageButton x:Name="_greenPlanet"
+                             Source="greenplanet.png"
+                             BackgroundColor="Transparent"
+                             AbsoluteLayout.LayoutBounds="0.5,0.15,50,50"
+                             AbsoluteLayout.LayoutFlags="PositionProportional"
+                             Clicked="OnGuessClicked" />
+                <!-- Colorful planet-->
+                <ImageButton x:Name="_colorfulPlanet"
+                             Source="colorfulplanet.png"
+                             BackgroundColor="Transparent"
+                             AbsoluteLayout.LayoutBounds="0.85,0.5,40,40"
+                             AbsoluteLayout.LayoutFlags="PositionProportional"
+                             Clicked="OnGuessClicked" />
+
+                <!-- Outer planets -->
+                <!-- Blue planet-->
+                <ImageButton x:Name="_bluePlanet"
+                             Source="blueplanet.png"
+                             CornerRadius="25"
+                             BackgroundColor="Transparent"
+                             AbsoluteLayout.LayoutBounds="0.5,0.05,50,50"
+                             AbsoluteLayout.LayoutFlags="PositionProportional"
+                             Clicked="OnGuessClicked"  />
+                <!-- Yellow planet -->
+                <ImageButton x:Name="_yellowPlanet"
+                             Source="yellowplanet.png"
+                             BackgroundColor="Transparent"
+                             AbsoluteLayout.LayoutBounds="0.15,0.5,50,50"
+                             AbsoluteLayout.LayoutFlags="PositionProportional" 
+                             Clicked="OnGuessClicked"/>
+                <!-- Orange planet -->
+                <ImageButton x:Name="_orangePlanet"
+                             Source="orangeplanet.png"
+                             BackgroundColor="Transparent"
+                             AbsoluteLayout.LayoutBounds="0.85,0.5,50,50"
+                             AbsoluteLayout.LayoutFlags="PositionProportional"
+                             Clicked="OnGuessClicked" />
+                <!-- Red planet -->
+                <ImageButton x:Name="_redPlanet"
+                             Source="redplanet.png"
+                             BackgroundColor="Transparent"
+                             AbsoluteLayout.LayoutBounds="0.5,0.9,40,40"
+                             AbsoluteLayout.LayoutFlags="PositionProportional"
+                             Clicked="OnGuessClicked" />
+
+            </AbsoluteLayout>
+
+            <!-- Orbit Speed Slider -->
+            <VerticalStackLayout Padding="5"
+                                 HorizontalOptions="Center">
+                <Label Text=" Orbit Speed"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalOptions="Center"/>
+                <Slider x:Name="_speedSlider"
+                        Minimum="0.5"
+                        Maximum="5"
+                        Value="1"
+                        WidthRequest="250"/>
+            </VerticalStackLayout>
+
+            <!-- Message appear when the planet clicked-->
+            <Label  x:Name="_showUpMessage"
+             Text=" Answer the Question to Unlock your Game  "
+             FontSize="22"
+             FontAttributes="Bold"
+             TextColor="white"
+             IsVisible="False"
+             HorizontalOptions="Center"
+             HorizontalTextAlignment="Center"
+             Margin="0,10,0,20"/>
+            <!--Box when you chooe planet answer and question will appear here -->
+            <Frame x:Name="_quizFrame" BorderColor="#00FFFF" CornerRadius="15" Padding="12" BackgroundColor="#111" HasShadow="True" IsVisible="False" WidthRequest="600" HorizontalOptions="Center">
+                <VerticalStackLayout Spacing="10" Padding="20">
+
+                    <!-- Quiz Question Label -->
+                    <Label x:Name="_questionsLabel" 
+            IsVisible="False"
+            FontSize="20"
+            TextColor="White"
+            HorizontalOptions="Center" />
+
+                    <!-- Quiz Options -->
+                    <HorizontalStackLayout x:Name="_optionsLayout"
+                          Spacing="10"
+                          HorizontalOptions="Center"
+                          IsVisible="True">
+
+                        <!-- answer buttons with styling -->
+                        <Button x:Name="_answerButton1" 
+                                 Text="Answer 1"
+                                 BackgroundColor="Blue"
+                                 TextColor="White"
+                                 CornerRadius="15"
+                                 Padding="20,12"
+                                 HeightRequest="60"
+                                 WidthRequest="150"
+                                 FontSize="18"
+                                 FontAttributes="Bold"
+                                 Margin="10"
+                                 IsVisible="False"
+                                 Clicked="OnOptionButtonClicked"/>
+
+                        <Button x:Name="_answerButton2" 
+                                 Text="Answer 2"
+                                 BackgroundColor="Blue"
+                                 TextColor="White"
+                                 CornerRadius="15"
+                                 Padding="20,12"
+                                 HeightRequest="60"
+                                 WidthRequest="150"
+                                 FontSize="18"
+                                 FontAttributes="Bold"
+                                 Margin="10"
+                                 IsVisible="False"
+                                 Clicked="OnOptionButtonClicked"/>
+
+                        <Button x:Name="_answerButton3" 
+                                 Text="Answer 3"
+                                 BackgroundColor="Blue"
+                                 TextColor="White"
+                                 CornerRadius="15"
+                                 Padding="20,12"
+                                 HeightRequest="60"
+                                 WidthRequest="150"
+                                 FontSize="18"
+                                 FontAttributes="Bold"
+                                 Margin="10"
+                                 IsVisible="False"
+                                 Clicked="OnOptionButtonClicked"/>
+
+                    </HorizontalStackLayout>
+
+                    <!-- Game Choice Buttons  -->
+                    <VerticalStackLayout x:Name="_gameChoiceLayout"
+                          Spacing="15"
+                          IsVisible="False"
+                          Padding="10">
+
+                        <!-- Heading for game choice -->
+                        <Label Text=" You got it right! Choose your game" 
+                FontSize="22" 
+                FontAttributes="Bold"
+                TextColor="White"
+                HorizontalOptions="Center"
+                Margin="0,10" />
+
+
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+
+            </Frame>
+
+            <!--  Featured game Title-->
+            <Label Text="⭐ Featured Games ⭐"
+                   x:Name="_featureGame"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   Margin="0,20,0,10"/>
+
+            <!--  Game Card options -->
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="15" HorizontalOptions="Center" x:Name="_gameCardsGrid" IsVisible="False"
+>
+                <!--  TicTacToe  Game -->
+                <Frame Grid.Column="0" BackgroundColor="#2C3E50" CornerRadius="15" Padding="15">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="5">
+                        <Image Source="xo.png" HeightRequest="70"/>
+                        <Label Text="Tic Tac Toe" FontSize="18" FontAttributes="Bold" TextColor="#00FFFF" HorizontalOptions="Center"/>
+                        <Label Text="⭐ 4.8   🏆 1.8K Wins" FontSize="14" TextColor="White"/>
+                        <Label Text="A classic puzzle game!" FontSize="13" TextColor="LightGray" HorizontalTextAlignment="Center"/>
+                        <Button Text="Play" BackgroundColor="Blue" TextColor="White" CornerRadius="10" WidthRequest="100" Clicked="OnXOGameButtonClicked"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!--  Asteroid Dodge -->
+                <Frame Grid.Column="1" BackgroundColor="#2C3E50" CornerRadius="15" Padding="15">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="5">
+                        <Label Text="☄️" FontSize="48" HorizontalOptions="Center"/>
+                        <Label Text="Asteroid Dodge" FontSize="18" FontAttributes="Bold" TextColor="#27AE60" HorizontalOptions="Center"/>
+                        <Label Text="Steer your rocket!" FontSize="13" TextColor="LightGray" HorizontalTextAlignment="Center"/>
+                        <Label Text="Dodge the falling rocks" FontSize="13" TextColor="LightGray" HorizontalTextAlignment="Center"/>
+                        <Button Text="Play" BackgroundColor="#27AE60" TextColor="White" CornerRadius="10" WidthRequest="100" Clicked="OnAsteroidGameButtonClicked"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!--  Planet Memory Match -->
+                <Frame Grid.Column="2" BackgroundColor="#2C3E50" CornerRadius="15" Padding="15">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="5">
+                        <Label Text="🪐" FontSize="48" HorizontalOptions="Center"/>
+                        <Label Text="Memory Match" FontSize="18" FontAttributes="Bold" TextColor="#FF69B4" HorizontalOptions="Center"/>
+                        <Label Text="Find every planet pair!" FontSize="13" TextColor="LightGray" HorizontalTextAlignment="Center"/>
+                        <Label Text="Train your memory" FontSize="13" TextColor="LightGray" HorizontalTextAlignment="Center"/>
+                        <Button Text="Play" BackgroundColor="#FF69B4" TextColor="White" CornerRadius="10" WidthRequest="100" Clicked="OnMemoryGameButtonClicked"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+
+
+
+
+

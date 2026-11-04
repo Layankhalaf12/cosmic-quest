@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GameLastOne.MemoryGame"
+             BackgroundImageSource="space.png">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="15" Padding="20" HorizontalOptions="Center">
+
+            <Label Text="🪐 Planet Memory Match 🪐"
+                   FontSize="36"
+                   FontAttributes="Bold"
+                   TextColor="#00FFFF"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+
+            <Label Text="Flip two cards at a time and find every matching pair!"
+                   FontSize="18"
+                   TextColor="Pink"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+
+            <HorizontalStackLayout Spacing="40" HorizontalOptions="Center">
+                <Label x:Name="_movesLabel" Text="Moves: 0" FontSize="20" FontAttributes="Bold" TextColor="White" />
+                <Label x:Name="_pairsLabel" Text="Pairs: 0 / 6" FontSize="20" FontAttributes="Bold" TextColor="#FFD700" />
+            </HorizontalStackLayout>
+
+            <!-- 4 x 3 board; the card buttons are created in code -->
+            <Frame BorderColor="#00FFFF" CornerRadius="15" Padding="15" BackgroundColor="#CC0B1E3F"
+                   HorizontalOptions="Center" HasShadow="True">
+                <Grid x:Name="_board"
+                      RowDefinitions="*,*,*"
+                      ColumnDefinitions="*,*,*,*"
+                      RowSpacing="10"
+                      ColumnSpacing="10" />
+            </Frame>
+
+            <Frame x:Name="_resultFrame" IsVisible="False" BorderColor="#FF69B4" CornerRadius="15"
+                   BackgroundColor="#111" Padding="12" HorizontalOptions="Center">
+                <Label x:Name="_resultLabel" FontSize="20" TextColor="White" HorizontalTextAlignment="Center" />
+            </Frame>
+
+            <HorizontalStackLayout Spacing="15" HorizontalOptions="Center">
+                <Button Text="New Game" BackgroundColor="#FF69B4" TextColor="White" CornerRadius="15"
+                        WidthRequest="140" Clicked="OnNewGameClicked" />
+                <Button Text="Back to Main Page" BackgroundColor="#2C3E50" TextColor="White" CornerRadius="15"
+                        WidthRequest="180" Clicked="OnBackClicked" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

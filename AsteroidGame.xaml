@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GameLastOne.AsteroidGame"
+             BackgroundImageSource="space.png">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="15" Padding="20" HorizontalOptions="Center">
+
+            <Label Text="☄️ Asteroid Dodge ☄️"
+                   FontSize="36"
+                   FontAttributes="Bold"
+                   TextColor="#00FFFF"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Steer your rocket and dodge the falling asteroids!"
+                   FontSize="18"
+                   TextColor="Pink"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+
+            <HorizontalStackLayout Spacing="40" HorizontalOptions="Center">
+                <Label x:Name="_scoreLabel" Text="Score: 0" FontSize="20" FontAttributes="Bold" TextColor="White" />
+                <Label x:Name="_bestLabel" Text="Best: 0" FontSize="20" FontAttributes="Bold" TextColor="#FFD700" />
+            </HorizontalStackLayout>
+
+            <!-- Play area: asteroids and the rocket are positioned in code -->
+            <Frame BorderColor="#00FFFF" CornerRadius="15" Padding="0" BackgroundColor="#CC0B1E3F"
+                   HorizontalOptions="Center" HasShadow="True">
+                <AbsoluteLayout x:Name="_playArea"
+                                WidthRequest="360"
+                                HeightRequest="480"
+                                IsClippedToBounds="True">
+                    <Label x:Name="_rocket"
+                           Text="🚀"
+                           FontSize="34"
+                           Rotation="-45"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" />
+                </AbsoluteLayout>
+            </Frame>
+
+            <!-- Result box shown when the rocket is hit -->
+            <Frame x:Name="_resultFrame" IsVisible="False" BorderColor="#FF69B4" CornerRadius="15"
+                   BackgroundColor="#111" Padding="12" HorizontalOptions="Center">
+                <Label x:Name="_resultLabel" FontSize="20" TextColor="White" HorizontalTextAlignment="Center" />
+            </Frame>
+
+            <!-- Controls -->
+            <HorizontalStackLayout Spacing="15" HorizontalOptions="Center">
+                <Button Text="◀" FontSize="24" WidthRequest="80" BackgroundColor="Blue" TextColor="White"
+                        CornerRadius="15" Clicked="OnLeftClicked" />
+                <Button x:Name="_startButton" Text="Start" FontSize="20" WidthRequest="120" BackgroundColor="#FF69B4"
+                        TextColor="White" CornerRadius="15" Clicked="OnStartClicked" />
+                <Button Text="▶" FontSize="24" WidthRequest="80" BackgroundColor="Blue" TextColor="White"
+                        CornerRadius="15" Clicked="OnRightClicked" />
+            </HorizontalStackLayout>
+
+            <Button Text="Back to Main Page" BackgroundColor="#2C3E50" TextColor="White" CornerRadius="10"
+                    WidthRequest="200" HorizontalOptions="Center" Clicked="OnBackClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

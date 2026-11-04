@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GameLastOne.XoGame"
+             Title="XoGame"  BackgroundImageSource="space.png">
+
+
+
+        <ScrollView>
+            <VerticalStackLayout Spacing="25" Padding="20" HorizontalOptions="Center" VerticalOptions="Center">
+
+                <!--  Glowing Title -->
+                <Label Text="🚀 Galaxy Tic-Tac-Toe 🌌"
+                   FontSize="40"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="#00FFFF"
+                    />
+
+                <!-- Player Name Entry -->
+                <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                    <Label Text="Enter Player Name:"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="#FF69B4"
+                       HorizontalOptions="Center"/>
+                    <Entry x:Name="_playerNameEntry"
+                       Placeholder="Type your name here"
+                       WidthRequest="250"
+                       FontSize="18"
+                       BackgroundColor="#222"
+                       TextColor="White"
+                       PlaceholderColor="#AAA" />
+                </VerticalStackLayout>
+
+                <!--  Choose Symbol -->
+                <Frame BorderColor="#00FFFF" CornerRadius="15" Padding="12" BackgroundColor="#111" HasShadow="True" WidthRequest="250" HorizontalOptions="Center">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Choose Your Symbol:"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           TextColor="#FF69B4"/>
+                        <HorizontalStackLayout Spacing="30" HorizontalOptions="Center">
+                       
+                        <RadioButton x:Name="_chooseXRadio"
+                                     Content=" X"
+                                    
+                                     IsChecked="True"
+                                     GroupName="SymbolChoice"
+                                     TextColor="White"/>
+                            <RadioButton x:Name="_chooseORadio"
+                                     Content="O"
+                                     GroupName="SymbolChoice"
+                                     TextColor="White"/>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!--  Start Game Button -->
+                <Button Text="Start Game"
+                    BackgroundColor="#00FFFF"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    WidthRequest="170"
+                    CornerRadius="10"
+                    Clicked="OnStartGameClicked"/>
+
+                <!--  Turn Indicator -->
+                <Label x:Name="TurnLabel"
+                   Text="Player X's Turn"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="#00FFFF"
+                     />
+
+                <!--  SIMPLE GAME BOARD (ORIGINAL LAYOUT) -->
+                <Grid RowSpacing="5" ColumnSpacing="5"
+                  HorizontalOptions="Center"
+                  VerticalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="90" />
+                        <RowDefinition Height="90" />
+                        <RowDefinition Height="90" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90" />
+                        <ColumnDefinition Width="90" />
+                        <ColumnDefinition Width="90" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Row 0 -->
+                    <ImageButton x:Name="Cell00" Grid.Row="0" Grid.Column="0" Clicked="OnImageButtonClicked" BackgroundColor="White"/>
+                    <ImageButton x:Name="Cell01" Grid.Row="0" Grid.Column="1" Clicked="OnImageButtonClicked" BackgroundColor="White"/>
+                    <ImageButton x:Name="Cell02" Grid.Row="0" Grid.Column="2" Clicked="OnImageButtonClicked" BackgroundColor="White"/>
+
+                    <!-- Row 1 -->
+                    <ImageButton x:Name="Cell10" Grid.Row="1" Grid.Column="0" Clicked="OnImageButtonClicked" BackgroundColor="White"/>
+                    <ImageButton x:Name="Cell11" Grid.Row="1" Grid.Column="1" Clicked="OnImageButtonClicked" BackgroundColor="White"/>
+                    <ImageButton x:Name="Cell12" Grid.Row="1" Grid.Column="2" Clicked="OnImageButtonClicked" BackgroundColor="White"/>
+
+                    <!-- Row 2 -->
+                    <ImageButton x:Name="Cell20" Grid.Row="2" Grid.Column="0" Clicked="OnImageButtonClicked" BackgroundColor="White"/>
+                    <ImageButton x:Name="Cell21" Grid.Row="2" Grid.Column="1" Clicked="OnImageButtonClicked" BackgroundColor="White"/>
+                    <ImageButton x:Name="Cell22" Grid.Row="2" Grid.Column="2" Clicked="OnImageButtonClicked" BackgroundColor="White"/>
+                </Grid>
+
+                <!--  Score Labels -->
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="30">
+                    <Label Text="Player X: "
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="Aquamarine"/>
+                    <Label x:Name="ScoreXLabel"
+                       Text="0"
+                       FontSize="20"
+                       TextColor="White"/>
+                    <Label Text="Player O: "
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="Aquamarine"/>
+                    <Label x:Name="ScoreOLabel"
+                       Text="0"
+                       FontSize="20"
+                       TextColor="White"/>
+                </HorizontalStackLayout>
+
+                <!-- Action Buttons -->
+                <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+                    <Button Text="Play Again" 
+                        Clicked="OnPlayAgainClicked" 
+                        BackgroundColor="#00FFFF"
+                        TextColor="Black" 
+                        CornerRadius="8"/>
+                    <Button Text="Reset Scores" 
+                        Clicked="OnResetClicked" 
+                        BackgroundColor="#FF69B4"
+                        TextColor="White" 
+                        CornerRadius="8"/>
+                </HorizontalStackLayout>
+
+                <!--  Result Frame -->
+                <Frame x:Name="ResultFrame"
+                   BorderColor="#00FFFF"
+                   CornerRadius="12"
+                   Padding="15"
+                   BackgroundColor="#111"
+                   HasShadow="True"
+                   IsVisible="False"
+                   HorizontalOptions="Center">
+                    <Label x:Name="ResultLabel"
+                       Text=""
+                       FontSize="22"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       TextColor="#FF69B4"/>
+                </Frame>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage>
+
